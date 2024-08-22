@@ -134,7 +134,7 @@ class TestUser(TestCase):
             "username": "petar"
         }
 
-
+        #novica
 
         response = self.c.put('/user-edit', json.dumps(update), HTTP_AUTHORIZATION='', content_type=JSON)
 
