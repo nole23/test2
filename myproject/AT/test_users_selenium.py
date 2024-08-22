@@ -19,7 +19,7 @@ class UserTests(LiveServerTestCase):
         super().setUpClass()  # Osiguraj da se osnovne postavke izvrše
 
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Pokreće Chrome u headless režimu
+        #chrome_options.add_argument("--headless")  # Pokreće Chrome u headless režimu
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         cls.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
