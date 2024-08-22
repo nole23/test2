@@ -19,10 +19,18 @@ class UserTests(LiveServerTestCase):
         super().setUpClass()  # Osiguraj da se osnovne postavke izvrše
 
         chrome_options = Options()
-        #chrome_options.add_argument("--headless")  # Pokreće Chrome u headless režimu
+        chrome_options.add_argument("--headless")  # Pokreće Chrome u headless režimu
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
-        cls.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        chrome_options.add_argument("--remote-debugging-port=9222")  # Dodaj port za debagovanje
+
+        # Proverite lokaciju Chrome-a i ako je potrebno dodajte putanju
+        chrome_options.binary_location = "/usr/bin/google-chrome"
+
+        cls.driver = webdriver.Chrome(
+            service=ChromeService(ChromeDriverManager().install()),
+            options=chrome_options
+        )
 
         cls.driver.implicitly_wait(10)  # Sačekaj 10 sekundi za elemente
 
