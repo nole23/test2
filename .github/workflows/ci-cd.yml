@@ -42,7 +42,12 @@ jobs:
         working-directory: myproject
         run: |
           python manage.py migrate
-
+      
+      - name: Start Django server
+        working-directory: myproject
+        run: |
+          python manage.py runserver 0.0.0.0:8000 &
+  
       - name: Run tests
         working-directory: myproject
         run: |
