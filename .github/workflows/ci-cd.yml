@@ -47,8 +47,3 @@ jobs:
         working-directory: myproject
         run: |
           python manage.py test
-
-      - name: Run Selenium tests
-        working-directory: myproject
-        run: |
-          python manage.py test myapp.tests.test_selenium
