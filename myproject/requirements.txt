@@ -1,3 +1,6 @@
 Django
+djangorestframework
+django-cors-headers
+PyJWT
 selenium
 webdriver-manager
