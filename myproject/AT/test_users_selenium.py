@@ -21,7 +21,7 @@ class UserTests(LiveServerTestCase):
         chrome_options = Options()
         # chrome_options.add_argument("--headless")  # Pokreće Chrome u headless režimu
         chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
+        # chrome_options.add_argument("--disable-dev-shm-usage")
         cls.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
 
         cls.driver.implicitly_wait(10)  # Sačekaj 10 sekundi za elemente
