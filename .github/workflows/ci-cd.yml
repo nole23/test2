@@ -27,27 +27,22 @@ jobs:
           pip install -r myproject/requirements.txt
           pip install selenium chromedriver-autoinstaller
 
-      - name: Install Chrome and ChromeDriver
+      - name: Install Chrome
         run: |
-          # Update the package list
-          sudo apt-get update
-
-          # Install wget
-          sudo apt-get install -y wget
-
-          # Download and install Chrome
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb
           sudo apt-get -f install
 
-          # Install unzip
-          sudo apt-get install -y unzip
+      - name: Get Chrome Version
+        id: get-chrome-version
+        run: |
+          chrome_version=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1-3)
+          echo "CHROME_VERSION=${chrome_version}" >> $GITHUB_ENV
 
-          # Get ChromeDriver version
-          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_128)
-
-          # Download and install ChromeDriver
-          wget "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+      - name: Install ChromeDriver
+        run: |
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+          wget "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
 
