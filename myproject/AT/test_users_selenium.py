@@ -52,13 +52,22 @@ class UserTests(LiveServerTestCase):
         self.driver.get(f'{self.live_server_url}/')
         print("Start 2. 1")
 
-        username = self.driver.find_element(By.ID, 'username')
+        wait = WebDriverWait(self.driver, 10)  # Čekaj do 10 sekundi
+        # Čekaj da se element pojavi
+        element = wait.until(
+            EC.presence_of_element_located((By.ID, "username"))
+        )
+        print("Element je pronađen!")
+        
+        # Ako je potrebno, možete dalje interagovati sa elementom
+        element.send_keys('test')
+        # username = self.driver.find_element(By.ID, 'username')
         print("Start 2. 2")
 
         password = self.driver.find_element(By.ID, 'password')
         print("Start 2. 3")
 
-        username.send_keys('test')
+        # username.send_keys('test')
         print("Start 2. 4")
         password.send_keys('test')
         print("Start 2. 5")
