@@ -25,6 +25,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r myproject/requirements.txt
+          pip install selenium chromedriver-autoinstaller
+        
+      - name: Remove old ChromeDriver
+        run: |
+          sudo rm /usr/local/bin/chromedriver
 
       - name: Install Chrome and ChromeDriver
         run: |
@@ -37,6 +42,8 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
+          import chromedriver_autoinstaller
+          chromedriver_autoinstaller.install()
 
       - name: Run migrations
         working-directory: myproject
