@@ -23,7 +23,8 @@ class UserTests(LiveServerTestCase):
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--remote-debugging-port=9222")  # Dodaj port za debagovanje
-
+        chrome_options.add_argument("--verbose")
+        chrome_options.add_argument("--log-level=3")  # Dodajte nivo logovanja za više informacija
         # Proverite lokaciju Chrome-a i ako je potrebno dodajte putanju
         chrome_options.binary_location = "/usr/bin/google-chrome"
 
