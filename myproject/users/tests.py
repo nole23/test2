@@ -135,6 +135,7 @@ class TestUser(TestCase):
         }
 
 
+
         response = self.c.put('/user-edit', json.dumps(update), HTTP_AUTHORIZATION='', content_type=JSON)
 
         self.assertEqual(response.status_code, 200)
