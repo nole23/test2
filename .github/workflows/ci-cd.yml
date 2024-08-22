@@ -52,3 +52,15 @@ jobs:
         working-directory: myproject
         run: |
           python manage.py test
+
+      - name: Print environment variables
+        run: |
+          env
+  
+      - name: List files in the current directory
+        run: |
+          ls -la
+
+      - name: Check if Django server is up
+        run: |
+          curl -I http://localhost:8000
