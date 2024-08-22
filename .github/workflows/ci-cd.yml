@@ -1,0 +1,38 @@
+
+name: Django CI/CD
+
+on:
+  push:
+    branches:
+      - master  # Ili bilo koja grana na kojoj želite da pokrećete workflow
+  pull_request:
+    branches:
+      - master  # Ili bilo koja grana na kojoj želite da pokrećete workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Ili verzija Python-a koju koristite
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r myproject/requirements.txt  # Putanja do requirements.txt
+
+      - name: Run migrations
+        run: |
+          cd myproject
+          python manage.py migrate
+
+      - name: Run tests
+        run: |
+          cd myproject
+          python manage.py test
