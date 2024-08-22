@@ -33,15 +33,14 @@ class UserTests(LiveServerTestCase):
 
     def test_1_setuser(self):
         print("Start 1. test...")
-        self.driver.get('http://localhost:8000/index')
-        self.driver.execute_script("document.body.style.zoom='50%'")
+        self.driver.get(f'{self.live_server_url}/index')
 
         print("End 1. test...")
 
     def test_2_login(self):
         print("Start 2. test...")
         # Pokreni test za logovanje
-        self.driver.get('http://localhost:8000/')
+        self.driver.get(f'{self.live_server_url}/')
 
         username = self.driver.find_element(By.ID, 'username')
         password = self.driver.find_element(By.ID, 'password')
@@ -61,7 +60,7 @@ class UserTests(LiveServerTestCase):
 
     def test_3_add_new_repository(self):
         print("Start 3. test...")
-        self.driver.get('http://localhost:8000/')
+        self.driver.get(f'{self.live_server_url}/')
 
         button = self.driver.find_element(By.ID, 'user-all-repo')
         button.click()
