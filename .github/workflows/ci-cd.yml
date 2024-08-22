@@ -3,10 +3,10 @@ name: Django CI/CD
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -39,13 +39,16 @@ jobs:
           sudo mv chromedriver /usr/local/bin/
 
       - name: Run migrations
+        working-directory: myproject
         run: |
           python manage.py migrate
 
       - name: Run tests
+        working-directory: myproject
         run: |
           python manage.py test
 
       - name: Run Selenium tests
+        working-directory: myproject
         run: |
           python manage.py test myapp.tests.test_selenium
