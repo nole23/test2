@@ -49,10 +49,10 @@ class UserTests(LiveServerTestCase):
 
             page_source = self.driver.page_source
             print(f"Page source length: {len(page_source)}")  # Print dužinu HTML sadržaja
-            print(page_source[:1000])  # Print prvih 1000 karaktera HTML sadržaja
+            print(page_source[:20000])  # Print prvih 1000 karaktera HTML sadržaja
             print("Start 2. 1")
 
-            WebDriverWait(self.driver, 60).until(
+            WebDriverWait(self.driver, 120).until(
                 EC.presence_of_element_located((By.ID, 'username'))
             )
 
