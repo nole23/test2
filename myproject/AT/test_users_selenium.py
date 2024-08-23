@@ -11,6 +11,7 @@ import signal
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+import requests
 
 class UserTests(LiveServerTestCase):
 
@@ -41,7 +42,13 @@ class UserTests(LiveServerTestCase):
         print("Start 2. test...")
         # Pokreni test za logovanje
         self.driver.get(f'{self.live_server_url}/')
+        response = requests.get(f'{self.live_server_url}/')
+        assert response.status_code == 200, "Aplikacija nije dostupna"
         print("Start 2. 1")
+
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.ID, 'username'))
+        )
 
         username = self.driver.find_element(By.ID, 'username')
         print("Start 2. 2")
