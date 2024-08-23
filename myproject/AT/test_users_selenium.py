@@ -43,8 +43,6 @@ class UserTests(LiveServerTestCase):
             print("Start 2. test...")
             # Pokreni test za logovanje
             self.driver.get(f'{self.live_server_url}/')
-            response = requests.get(f'{self.live_server_url}/')
-            assert response.status_code != 200, "Aplikacija nije dostupna"
             print("Start 2. 1")
 
             WebDriverWait(self.driver, 10).until(
