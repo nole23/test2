@@ -1,0 +1,15 @@
+# Koristi zvaničnu Node.js sliku za build
+FROM node:18 AS builder
+
+# Postavi radni direktorijum
+WORKDIR /app
+
+# Kopiraj package.json i install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Kopiraj ostatak aplikacije
+COPY . .
+
+# Izgradi aplikaciju
+RUN npm run build

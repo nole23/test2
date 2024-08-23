@@ -6,6 +6,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
+    image: nole23/frontend:latest  # Dodajte oznaku slike
     ports:
       - "80:80"
 
@@ -14,6 +15,7 @@ services:
       context: ./myproject
       dockerfile: Dockerfile
     container_name: myproject
+    image: nole23/myproject:latest  # Dodajte oznaku slike
     ports:
       - "8000:8000"
     environment:

@@ -1,0 +1,20 @@
+FROM python:3.9
+
+# Postavi radni direktorijum
+WORKDIR /app
+
+# Kopiraj requirements
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Kopiraj ostatak aplikacije
+COPY . .
+
+# Instaliraj Selenium i WebDriver Manager za Python
+RUN pip install selenium webdriver-manager
+
+# Izloži port na kojem Django aplikacija radi
+EXPOSE 8000
+
+# Pokreni Django server
+CMD ["python", "manage.py", "test"]

@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  myproject:
+    build:
+      context: ./myproject
+      dockerfile: Dockerfile.test
+    container_name: myproject
+    environment:
+      - DJANGO_SETTINGS_MODULE=myproject.settings
+    command: ["python", "manage.py", "test"]
+    volumes:
+      - ./myproject:/app
+
+  # Opcionalno: Dodajte servis za bazu podataka ako je potreban za testiranje
+  # db:
+  #   image: postgres:latest
+  #   environment:
+  #     POSTGRES_DB: test_db
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
