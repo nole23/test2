@@ -43,7 +43,7 @@ class UserTests(LiveServerTestCase):
         try:
             print("Start 2. test...")
             # Pokreni test za logovanje
-            self.driver.get(f'{self.live_server_url}/')
+            self.driver.get(f'{self.live_server_url}/login')
             print("Start 2. 1")
 
             WebDriverWait(self.driver, 60).until(
