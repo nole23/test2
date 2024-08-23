@@ -92,3 +92,16 @@ class UserInformation1(APIView):
         userInformation = self.user.getAllInformation(id)
         self.res.addItem(userInformation)
         return self.res.createResponse(status=200)
+    
+
+
+class UserTest(APIView):
+    user = UserService()
+
+    def __init__(self):
+        self.res = ResponsObject()
+
+    def get(self, _):
+        user = self.user.getAllUser()
+        self.res.addItem(user)
+        return self.res.createResponse(status=200)

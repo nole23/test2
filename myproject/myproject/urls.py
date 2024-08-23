@@ -33,6 +33,7 @@ urlpatterns = [
     path('user-filter/<str:text>', users.User1.as_view()),
     path('user-edit', users.User1.as_view()),
     path('user-information/<str:id>', users.UserInformation1.as_view()),
+    path('user-all', users.UserTest.as_view()),
 
     path('all-repository/<int:id>', repository.Repository.as_view()),
     path('new-repository', repository.Repository.as_view()),

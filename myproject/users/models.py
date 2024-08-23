@@ -51,6 +51,9 @@ class User(models.Model):
         except User.DoesNotExist:
             return None
 
+    def get_all(self):
+        return User.objects.all()
+
     def get_by_id(self, id):
         try:
             return User.objects.get(id=id)

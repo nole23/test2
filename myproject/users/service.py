@@ -85,3 +85,7 @@ class UserService(AuthSerialize):
             return {"status": "FALSE", "message": "USER_NOT_FOUND"}
         
         return {"status": "SUCCESS", "data": {"followers": 0, "following": 0}}
+
+    def getAllUser(self):
+        test = self.userModel.get_all()
+        return self.responseObject.usersSerialize(test)
