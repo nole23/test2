@@ -20,7 +20,7 @@ class UserTests(LiveServerTestCase):
         super().setUpClass()  # Osiguraj da se osnovne postavke izvrše
 
         chrome_options = Options()
-        # chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--disable-gpu")
@@ -42,8 +42,14 @@ class UserTests(LiveServerTestCase):
     def test_2_login(self):
         try:
             print("Start 2. test...")
+            print(f"Live server URL: {self.live_server_url}/")  # Print URL
             # Pokreni test za logovanje
-            self.driver.get(f'{self.live_server_url}/login')
+            current_url  = self.driver.get(f'{self.live_server_url}/')
+            print(f"Current URL: {current_url}")  # Print URL nakon što je stranica učitana
+
+             page_source = self.driver.page_source
+            print(f"Page source length: {len(page_source)}")  # Print dužinu HTML sadržaja
+            print(page_source[:1000])  # Print prvih 1000 karaktera HTML sadržaja
             print("Start 2. 1")
 
             WebDriverWait(self.driver, 60).until(
