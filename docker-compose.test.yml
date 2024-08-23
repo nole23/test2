@@ -6,12 +6,20 @@ services:
       context: ./myproject
       dockerfile: Dockerfile.test
     container_name: myproject
+    image: myproject-test
+    ports:
+      - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=myproject.settings
     command: ["python", "manage.py", "test"]
     volumes:
       - ./myproject:/app
 
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: chrome
+    ports:
+      - "4444:4444"
   # Opcionalno: Dodajte servis za bazu podataka ako je potreban za testiranje
   # db:
   #   image: postgres:latest
