@@ -27,3 +27,16 @@ jobs:
         working-directory: myproject
         run: |
           python manage.py test
+      
+      - name: Upload ChromeDriver log
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-screenshot
+          path: screenshot.png
+      
+      - name: Debug information
+        run: |
+          echo "Listing directory contents:"
+          ls -l
+          echo "Current directory:"
+          pwd

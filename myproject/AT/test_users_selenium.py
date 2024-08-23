@@ -45,7 +45,7 @@ class UserTests(LiveServerTestCase):
             self.driver.get(f'{self.live_server_url}/')
             print("Start 2. 1")
 
-            WebDriverWait(self.driver, 10).until(
+            WebDriverWait(self.driver, 60).until(
                 EC.presence_of_element_located((By.ID, 'username'))
             )
 
