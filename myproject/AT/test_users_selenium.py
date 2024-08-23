@@ -39,39 +39,45 @@ class UserTests(LiveServerTestCase):
         print("End 1. test...")
 
     def test_2_login(self):
-        print("Start 2. test...")
-        # Pokreni test za logovanje
-        self.driver.get(f'{self.live_server_url}/')
-        response = requests.get(f'{self.live_server_url}/')
-        assert response.status_code == 200, "Aplikacija nije dostupna"
-        print("Start 2. 1")
+        try:
+            print("Start 2. test...")
+            # Pokreni test za logovanje
+            self.driver.get(f'{self.live_server_url}/')
+            response = requests.get(f'{self.live_server_url}/')
+            assert response.status_code != 200, "Aplikacija nije dostupna"
+            print("Start 2. 1")
 
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'username'))
-        )
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, 'username'))
+            )
 
-        username = self.driver.find_element(By.ID, 'username')
-        print("Start 2. 2")
+            username = self.driver.find_element(By.ID, 'username')
+            print("Start 2. 2")
 
-        password = self.driver.find_element(By.ID, 'password')
-        print("Start 2. 3")
+            password = self.driver.find_element(By.ID, 'password')
+            print("Start 2. 3")
 
-        username.send_keys('test')
-        print("Start 2. 4")
-        password.send_keys('test')
-        print("Start 2. 5")
+            username.send_keys('test')
+            print("Start 2. 4")
+            password.send_keys('test')
+            print("Start 2. 5")
 
-        # Nađite elemente (npr. dugme)
-        button = self.driver.find_element(By.CLASS_NAME, 'btn-primary')
-        print("Start 2. 6")
-        button.click()
-        print("Start 2. 7")
+            # Nađite elemente (npr. dugme)
+            button = self.driver.find_element(By.CLASS_NAME, 'btn-primary')
+            print("Start 2. 6")
+            button.click()
+            print("Start 2. 7")
 
-        WebDriverWait(self.driver, 1).until(
-            EC.presence_of_element_located((By.ID, 'profile-img-user'))  # Zamijenite s ID-om elementa na početnoj stranici
-        )
+            WebDriverWait(self.driver, 1).until(
+                EC.presence_of_element_located((By.ID, 'profile-img-user'))  # Zamijenite s ID-om elementa na početnoj stranici
+            )
 
-        print("End 2. test...")
+            print("End 2. test...")
+        except Exception as e:
+            # Snimanje screenshot-a u slučaju greške
+            self.driver.save_screenshot('screenshot.png')
+            print(f"Test failed: {e}")
+            raise  # Ponovo podignite izuzetak da obavestite o grešci
 
     # def test_3_add_new_repository(self):
     #     print("Start 3. test...")
